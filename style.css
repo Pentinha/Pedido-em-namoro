@@ -1,0 +1,160 @@
+:root{
+  --dark-bg: #0b0b0b;
+  --card-bg: rgba(18, 18, 24, 0.95); 
+  --text-color: #f5f5f5;
+  --muted-text: #999;
+  --accent-violet: #c72fff; 
+  --accent-pink: #ff67d4; 
+  --shadow-color: rgba(199, 47, 255, 0.3);
+  --soft-shadow: rgba(0, 0, 0, 0.5);
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #121212 0%, var(--dark-bg) 100%); 
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--accent-pink);
+  transform: rotate(45deg);
+  animation: floatUp 1s ease-out forwards;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px var(--accent-pink));
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--accent-pink);
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: -10px;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(1.5) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.popup {
+  position: relative;
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 1.125rem;
+  text-align: center;
+  box-shadow: 0 0 1.25rem var(--shadow-color), 0 0.625rem 1.875rem var(--soft-shadow); 
+  border: 1px solid rgba(199, 47, 255, 0.1);
+  backdrop-filter: blur(8px);
+  min-width: 300px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* overflow: hidden; <-- ESTA LINHA FOI REMOVIDA. Esta era a causa do botão "invisível". */
+}
+
+.popup h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  background: linear-gradient(135deg, var(--accent-violet), var(--accent-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.button-wrapper {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.popup button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+  position: relative;
+}
+
+.yes-btn {
+  background: linear-gradient(135deg, var(--accent-violet), var(--accent-pink)); 
+  color: white;
+  z-index: 1;
+  box-shadow: 0 0 0.9375rem rgba(199,47,255,0.6);
+}
+
+.no-btn {
+  background: #222;
+  color: var(--accent-pink);
+  border: 1px solid rgba(255,103,212,0.3);
+  box-shadow: 0 0 0.625rem rgba(255,255,255,0.1);
+  z-index: 2;
+  user-select: none;
+  pointer-events: auto;
+  transition: 0.3s, left 0.4s ease-out, top 0.4s ease-out;
+}
+
+.yes-btn:hover {
+  background: linear-gradient(135deg, #d95fff, #8a22ff);
+  transform: translateY(-2px);
+  box-shadow: 0 0 1.125rem rgba(199,47,255,0.8);
+}
+
+.no-btn:hover {
+  background: #333;
+  color: #fff;
+}
+
+.warning-message {
+  color: var(--accent-pink);
+  font-weight: 600;
+  margin-top: 15px;
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
