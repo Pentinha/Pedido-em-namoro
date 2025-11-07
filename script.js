@@ -18,7 +18,6 @@ window.onload = function () {
     const h1 = popup.querySelector('h1');
     const wrapper = document.getElementById('button-wrapper');
     
-    // --- CORREÇÃO DO EMOJI ---
     h1.innerText = "Ja pode beijar o namorado! 💘❤️";
     
     const warning = popup.querySelector('.warning-message');
@@ -39,13 +38,9 @@ window.onload = function () {
   function moveNoButton() {
     const btnRect = noBtn.getBoundingClientRect();
     
-    // --- CORREÇÃO DA FUGA ---
-    // A lógica agora usa clientWidth, que ignora o overflow
     const maxX = popup.clientWidth - btnRect.width;
     const maxY = popup.clientHeight - btnRect.height;
 
-    // A lógica de random agora vai de 0 até o máximo, garantindo
-    // que o botão sempre fique 100% dentro do popup.
     const randomX = Math.floor(Math.random() * maxX);
     const randomY = Math.floor(Math.random() * maxY);
 
@@ -55,7 +50,6 @@ window.onload = function () {
   }
 
   function flee() {
-    // Torna o botão 'absolute' na primeira tentativa de fuga
     if (noBtn.style.position !== 'absolute') {
       noBtn.style.position = 'absolute';
       wrapper.style.justifyContent = 'center';
@@ -77,6 +71,5 @@ window.onload = function () {
     }
   }
 
-  // A fuga agora SÓ acontece no clique.
   noBtn.addEventListener('click', flee);
 };
